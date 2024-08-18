@@ -3,7 +3,7 @@
 const App = () => {
   return (
     <div>
-      <h1>Amjad Hossain new massanger app</h1>
+      <h1 className="">Amjad Hossain </h1>
     </div>
   )
 }
