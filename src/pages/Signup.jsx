@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import GenderCheckbox from "../components/GenderCheckbox";
 
 const Signup = () => {
   return (
@@ -54,7 +55,7 @@ const Signup = () => {
               className="w-full px-3 py-2 mt-1 text-white bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
-
+          <GenderCheckbox />
           <Link
             to="/login"
             className="block text-sm font-medium text-blue-500 hover:underline mt-4"
@@ -62,9 +63,7 @@ const Signup = () => {
             Already have an account?
           </Link>
 
-          <button
-            className="w-full px-4 py-2 mt-6 font-bold text-white bg-blue-600 rounded-md hover:bg-blue-700"
-          >
+          <button className="w-full px-4 py-2 mt-6 font-bold text-white bg-blue-600 rounded-md hover:bg-blue-700">
             Signup
           </button>
         </form>
