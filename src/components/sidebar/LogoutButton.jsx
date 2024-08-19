@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import { BiLogOut } from "react-icons/bi";
 
 export const LogoutButton = () => {
   return (
-    <div>
-        <button>utton</button>
+    <div className="mt-auto">
+      <BiLogOut className="w-6 h-6 text-red-500 cursor-pointer" />
     </div>
-  )
-}
+  );
+};
