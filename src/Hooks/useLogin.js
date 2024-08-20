@@ -15,7 +15,6 @@ const handleInputErrors = (email, password) => {
   
   const useLogin = () => {
     const [loading, setLoading] = useState(false)
-  
     const { setAuthUser } = useAuthContext()
   
     const login = async (email, password) => {
