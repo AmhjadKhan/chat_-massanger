@@ -1,9 +1,8 @@
-// Import necessary libraries and components
 import React, { useEffect } from 'react';
-import Messages from './Messages'; // Component to display messages
-import MessageInput from './MessageInput'; // Component to input a new message
-import useConversation from '../../zustend/useConversation'; // Zustand store for conversation state
-import { TiMessage } from 'react-icons/ti'; // Icon for no chat selected view
+import Messages from './Messages'; 
+import MessageInput from './MessageInput'; 
+import useConversation from '../../zustend/useConversation'; 
+import { TiMessage } from 'react-icons/ti'; 
 
 const MessageContainer = () => {
   // Destructure selectedConversation and setSelectedConversation from the Zustand store
