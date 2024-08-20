@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import GenderCheckbox from "../components/GenderCheckbox";
 import useSignup from "../Hooks/useSignup";
+import { BsUnlock, BsLock } from "react-icons/bs";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -12,8 +13,8 @@ const Signup = () => {
     gender: ""
   });
 
-  const { loading, signup } = useSignup()
-
+  const [showPassword, setShowPassword] = useState(false);
+  const { loading, signup } = useSignup();
 
   // Handle gender selection
   const handleCheckboxChange = (gender) => {
@@ -24,7 +25,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-    await signup(formData)
+    await signup(formData);
   };
 
   return (
@@ -45,7 +46,8 @@ const Signup = () => {
               placeholder="Enter Username"
               className="w-full px-3 py-2 mt-1 text-white bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
               value={formData.username}
-              onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, username: e.target.value })}
             />
           </div>
 
@@ -58,7 +60,8 @@ const Signup = () => {
               placeholder="example@gmail.com"
               className="w-full px-3 py-2 mt-1 text-white bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })}
             />
           </div>
 
@@ -66,13 +69,23 @@ const Signup = () => {
             <label className="block text-sm font-medium text-white mt-4">
               Password
             </label>
-            <input
-              type="password"
-              placeholder="Enter Password"
-              className="w-full px-3 py-2 mt-1 text-white bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
-              value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter Password"
+                className="w-full px-3 py-2 mt-1 text-white bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
+                value={formData.password}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })}
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-3 flex items-center text-gray-400"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <BsUnlock /> : <BsLock />}
+              </button>
+            </div>
           </div>
 
           <div>
@@ -84,11 +97,15 @@ const Signup = () => {
               placeholder="Confirm Password"
               className="w-full px-3 py-2 mt-1 text-white bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
               value={formData.confirmPassword}
-              onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, confirmPassword: e.target.value })}
             />
           </div>
 
-          <GenderCheckbox onCheckboxChange={handleCheckboxChange} selectedGender={formData.gender} />
+          <GenderCheckbox
+            onCheckboxChange={handleCheckboxChange}
+            selectedGender={formData.gender}
+          />
 
           <Link
             to="/login"
@@ -97,8 +114,15 @@ const Signup = () => {
             Already have an account?
           </Link>
 
-          <button className="w-full px-4 py-2 mt-6 font-bold text-white bg-blue-600 rounded-md hover:bg-blue-700">
-            Signup
+          <button
+            className="btn btn-block btn-sm mt-2 bg-blue-700 font-bold text-white"
+            disabled={loading}
+          >
+            {loading ? (
+              <span className="loading loading-spinner"></span>
+            ) : (
+              "Sign Up"
+            )}
           </button>
         </form>
       </div>
