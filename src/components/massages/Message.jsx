@@ -2,6 +2,7 @@ import React from 'react'
 import userAvater from '../../assets/user.png'
 import { useAuthContext } from '../../contex/AuthContext'
 import useConversation from '../../zustend/useConversation'
+import { formateTime } from "../../utils/formateTime";
 
 const Message = ({ message }) => {
   // console.log(message)
@@ -19,6 +20,7 @@ const Message = ({ message }) => {
 
   const msgBgColor = messageFromMe ? "bg-green-500" : ""
 
+  const formattedTime = formateTime(message.createdAt)
 
   return (
      <div className={`chat ${chatClassName}`}>
@@ -33,7 +35,7 @@ const Message = ({ message }) => {
       </div>
 
       <div className="chat-footer opacity-50 text-xs flex gap-1 items-center text-slate-950">
-        10:30
+        {formattedTime}
       </div>
     </div>
   )
