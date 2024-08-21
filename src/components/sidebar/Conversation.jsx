@@ -1,6 +1,7 @@
 import React from "react";
 import userAvter from "../../assets/user.png"; 
 import useConversation from "../../zustend/useConversation"; 
+import { useSocketContext } from "../../contex/SocketContext";
 
 // Conversation component to display individual conversation items
 const Conversation = ({ conversation, lastIndex }) => {
@@ -9,6 +10,10 @@ const Conversation = ({ conversation, lastIndex }) => {
 
   // Check if the current conversation is the selected one
   const isSelected = selectedConversation?._id === conversation._id;
+
+  const { onlineUsers } = useSocketContext()
+
+  const isOnline = onlineUsers.includes(conversation._id)
 
   return (
     <>
@@ -20,7 +25,7 @@ const Conversation = ({ conversation, lastIndex }) => {
         onClick={() => setSelectedConversation(conversation)}
       >
         {/* Display user image */}
-        <div className="avatar">
+        <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 rounded-full">
             <img src={conversation.profilePic || userAvter} alt="User Avatar" />
           </div>
